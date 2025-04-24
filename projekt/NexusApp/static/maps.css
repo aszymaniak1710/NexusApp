@@ -1,0 +1,102 @@
+/* Podstawowe style */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: #fff;
+    overflow: hidden; /* Ukrycie przewijania */
+}
+
+header {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #f39c12;
+}
+
+/* Kontener map */
+.map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Pełna wysokość okna przeglądarki */
+    margin: 0;
+    overflow: hidden; /* Ukrycie przewijania wewnątrz kontenera */
+}
+
+/* Styl mapy */
+.map {
+    flex: 1; /* Rozszerza każdą mapę równomiernie */
+    background-size: cover; /* Dopasowanie obrazu */
+    background-position: center; /* Wyśrodkowanie obrazu */
+    height: 100%; /* Ustaw pełną wysokość kontenera */
+    transition: flex 0.5s ease, transform 0.5s ease; /* Animacja rozszerzania */
+    position: relative; /* Pozycjonowanie dla opisu */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden; /* Ukrycie wychodzącego opisu */
+}
+
+.map:hover {
+    flex: 3; /* Powiększ na najechaniu */
+    transform: scale(1.02); /* Delikatne powiększenie */
+    z-index: 2; /* Zapewnienie, że powiększona mapa nachodzi na inne */
+}
+
+/* Opis mapy */
+.map-info {
+    background-color: rgba(0, 0, 0, 0.8); /* Półprzezroczysty czarny */
+    color: white; /* Biały tekst */
+    padding: 20px;
+    text-align: center;
+    position: absolute;
+    bottom: 0; /* Przyklejenie do dolnej krawędzi mapy */
+    width: 100%;
+    height: 50%; /* Przysłanianie dolnej połowy mapy */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Ukrycie opisu początkowo */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Animacja pojawiania i wysuwania */
+    transform: translateY(100%); /* Ukrycie opisu poniżej dolnej połowy mapy */
+}
+
+.map:hover .map-info {
+    opacity: 1; /* Widoczny tekst */
+    transform: translateY(0); /* Przesunięcie opisu na dolną połowę mapy */
+}
+
+/* Style dla h2 i p w opisach */
+.map-info h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.map-info p {
+    font-size: 16px;
+    margin-top: 10px;
+    opacity: 0.9; /* Delikatna przezroczystość dla tekstu */
+}

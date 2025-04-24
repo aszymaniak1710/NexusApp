@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dodaj Mapę</title>
+</head>
+<body>
+    <h1>Dodaj nową mapę</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="nazwa">Nazwa mapy:</label>
+        <input type="text" name="nazwa" id="nazwa" required><br>
+
+        <label for="ilosc_graczy">Ilość graczy:</label>
+        <input type="number" name="ilosc_graczy" id="ilosc_graczy" required><br>
+
+        <label for="sr_czas_gry">Średni czas gry (minuty):</label>
+        <input type="number" name="sr_czas_gry" id="sr_czas_gry" required><br>
+
+        <label for="opis_trybu">Opis trybu:</label>
+        <textarea name="opis_trybu" id="opis_trybu" required></textarea><br>
+
+        <button type="submit">Dodaj Mapę</button>
+    </form>
+    <br>
+    <a href="{% url 'display_maps' %}">Powrót do listy map</a>
+</body>
+</html>

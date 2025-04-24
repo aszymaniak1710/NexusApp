@@ -1,0 +1,48 @@
+{% load static %}
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Ról</title>
+    <link rel="stylesheet" href="{% static 'roles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'display_characters' %}">Postacie</a></li>
+                <li><a href="{% url 'display_maps' %}">Mapy</a></li>
+                <li><a href="{% url 'display_ranks' %}">Rangi</a></li>
+                <li><a href="{% url 'display_roles' %}">Role</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Lista Ról</h1>
+
+        <div class="roles-container">
+            {% for role in roles %}
+            <div class="role-card">
+                <h2>{{ role.naz_roli }}</h2>
+                <a href="{% url 'delete_role' role.id_r %}" class="delete-btn" onclick="return confirm('Czy na pewno usunąć tę rolę?');">Usuń</a>
+            </div>
+            {% empty %}
+            <p>Brak dostępnych ról.</p>
+            {% endfor %}
+        </div>
+
+        <h2>Dodaj Nową Rolę</h2>
+        <form method="POST" action="{% url 'add_role' %}" class="add-role-form">
+            {% csrf_token %}
+            <input type="text" name="naz_roli" placeholder="Nazwa roli" required>
+            <button type="submit">Dodaj</button>
+        </form>
+    </main>
+
+    <footer>
+        <a href="{% url 'home' %}">Powrót do strony głównej</a>
+    </footer>
+</body>
+</html>

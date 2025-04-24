@@ -1,0 +1,122 @@
+/* Resetowanie */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tło i czcionka */
+body {
+    font-family: Arial, sans-serif;
+    background: url("roles_bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+/* Nagłówek */
+header {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    color: #f39c12;
+}
+
+/* Główna zawartość */
+main {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Karty ról */
+.roles-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.role-card {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 200px;
+}
+
+/* Przycisk usuwania */
+.delete-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    background: #e74c3c;
+    margin-top: 10px;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+}
+
+/* Formularz dodawania */
+.add-role-form {
+    margin-top: 20px;
+}
+
+.add-role-form input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 60%;
+}
+
+.add-role-form button {
+    padding: 10px;
+    background: #2ecc71;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-role-form button:hover {
+    background: #27ae60;
+}
+
+/* Stopka */
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #f39c12;
+    text-decoration: none;
+}

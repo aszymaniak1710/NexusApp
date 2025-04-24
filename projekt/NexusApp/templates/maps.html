@@ -1,0 +1,35 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapy</title>
+     <link rel="stylesheet" href="{% static 'maps.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'display_characters' %}">Postacie</a></li>
+                <li><a href="{% url 'display_maps' %}">Mapy</a></li>
+                <li><a href="{% url 'display_ranks' %}">Rangi</a></li>
+                <li><a href="{% url 'display_roles' %}">Role</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="map-container">
+            {% for map in maps %}
+            <div class="map" style="background-image: url({% static 'maps/' %}{{ map.nazwa|slugify }}.jpg);">                <div class="map-info">
+                    <h2>{{ map.nazwa }}</h2>
+                    <p>{{ map.opis_trybu }}</p>
+                    <p><strong>Ilość graczy:</strong> {{ map.ilosc_graczy }}</p>
+                    <p><strong>Średni czas gry:</strong> {{ map.sr_czas_gry }} minut</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

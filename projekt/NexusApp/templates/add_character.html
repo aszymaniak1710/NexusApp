@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj Postać</title>
+    <link rel="stylesheet" href="{% static 'character.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'display_characters' %}">Postacie</a></li>
+                <li><a href="{% url 'display_maps' %}">Mapy</a></li>
+                <li><a href="{% url 'display_ranks' %}">Rangi</a></li>
+                <li><a href="{% url 'display_roles' %}">Role</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="nazwa">Nazwa:</label>
+            <input type="text" name="nazwa" id="nazwa" required><br>
+        
+            <label for="rasa">Rasa:</label>
+            <input type="text" name="rasa" id="rasa" required><br>
+        
+            <label for="wiek">Wiek:</label>
+            <input type="number" name="wiek" id="wiek" required><br>
+        
+            <label for="id_poch">Pochodzenie:</label>
+            <select name="id_poch" id="id_poch" required>
+                <option value="">-- Wybierz pochodzenie --</option>
+                {% for pochodzenie in pochodenia %}
+                <option value="{{ pochodzenie.id_poch }}">{{ pochodzenie.miejsce_urodzenia }}</option>
+                {% endfor %}
+            </select><br>
+        
+            <label for="id_r">Rola:</label>
+            <select name="id_r" id="id_r" required>
+                <option value="">-- Wybierz rolę --</option>
+                {% for rola in role %}
+                <option value="{{ rola.id_r }}">{{ rola.naz_roli }}</option>
+                {% endfor %}
+            </select><br>
+        
+            <label for="koszt_be">Koszt BE:</label>
+            <select name="koszt_be" id="koszt_be" required>
+                <option value="">-- Wybierz koszt --</option>
+                {% for trudnosc in trudnosci %}
+                <option value="{{ trudnosc.koszt_be }}">{{ trudnosc.koszt_be }}</option>
+                {% endfor %}
+            </select><br>
+        
+            <label for="data_wydania">Data wydania:</label>
+            <input type="date" name="data_wydania" id="data_wydania" required><br>
+        
+            <label for="id_zas">Zasoby:</label>
+            <select name="id_zas" id="id_zas" required>
+                <option value="">-- Wybierz zasoby --</option>
+                {% for zasob in zasoby %}
+                <option value="{{ zasob.id_zas }}">{{ zasob.nazwa }}</option>
+                {% endfor %}
+            </select><br>
+        
+            <label for="id_obr">Obrażenia:</label>
+            <select name="id_obr" id="id_obr" required>
+                <option value="">-- Wybierz obrażenia --</option>
+                {% for obr in obrazenia %}
+                <option value="{{ obr.id_obr }}">{{ obr.nazwa }}</option>
+                {% endfor %}
+            </select><br>
+        
+            <label for="id_run">Runy:</label>
+            <select name="id_run" id="id_run" required>
+                <option value="">-- Wybierz runy --</option>
+                {% for runa in runy %}
+                <option value="{{ runa.id_run }}">{{ runa.nazwa }}</option>
+                {% endfor %}
+            </select><br>
+        
+            <label for="id_lini">Linia:</label>
+            <select name="id_lini" id="id_lini" required>
+                <option value="">-- Wybierz linię --</option>
+                {% for linia in linie %}
+                <option value="{{ linia.id_lini }}">{{ linia.nazwa }}</option>
+                {% endfor %}
+            </select><br>
+            
+            <h2>Umiejętności</h2>
+            <label for="umiejetnosc_q_nazwa">Q - Nazwa:</label>
+            <input type="text" name="umiejetnosc_q_nazwa" id="umiejetnosc_q_nazwa" required><br>
+            <label for="umiejetnosc_q_opis">Q - Opis:</label>
+            <input type="text" name="umiejetnosc_q_opis" id="umiejetnosc_q_opis" required><br>
+            
+            <label for="umiejetnosc_w_nazwa">W - Nazwa:</label>
+            <input type="text" name="umiejetnosc_w_nazwa" id="umiejetnosc_w_nazwa" required><br>
+            <label for="umiejetnosc_w_opis">W - Opis:</label>
+            <input type="text" name="umiejetnosc_w_opis" id="umiejetnosc_w_opis" required><br>
+            
+            <label for="umiejetnosc_e_nazwa">E - Nazwa:</label>
+            <input type="text" name="umiejetnosc_e_nazwa" id="umiejetnosc_e_nazwa" required><br>
+            <label for="umiejetnosc_e_opis">E - Opis:</label>
+            <input type="text" name="umiejetnosc_e_opis" id="umiejetnosc_e_opis" required><br>
+            
+            <label for="umiejetnosc_r_nazwa">R - Nazwa:</label>
+            <input type="text" name="umiejetnosc_r_nazwa" id="umiejetnosc_r_nazwa" required><br>
+            <label for="umiejetnosc_r_opis">R - Opis:</label>
+            <input type="text" name="umiejetnosc_r_opis" id="umiejetnosc_r_opis" required><br>
+            
+            <h2>Statystyki</h2>
+            <label for="stat_hp">HP:</label>
+            <input type="number" name="stat_hp" id="stat_hp" required><br>
+            <label for="stat_mana">Mana:</label>
+            <input type="number" name="stat_mana" id="stat_mana" required><br>
+            <label for="stat_ad">AD:</label>
+            <input type="number" name="stat_ad" id="stat_ad" required><br>
+            <label for="stat_ap">AP:</label>
+            <input type="number" name="stat_ap" id="stat_ap" required><br>
+
+            <button type="submit">Dodaj postać</button>
+            {% if error %}
+            <p style="color: red;">{{ error }}</p>
+            {% endif %}
+        </form>
+    </main>
+    <footer>
+        <a href="{% url 'display_characters' %}">Powrót do listy postaci</a>
+    </footer>
+</body>
+</html>

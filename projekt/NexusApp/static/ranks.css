@@ -1,0 +1,99 @@
+/* Ogólne style */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.8); /* Półprzezroczyste tło dla nagłówka */
+    padding: 10px 0;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+header nav ul li a:hover {
+    color: #adb5bd;
+}
+
+/* Główna część */
+main {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1200px;
+    background-color: rgba(255, 255, 255, 0.9); /* Półprzezroczyste białe tło */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #000; /* Tekst w czarnym kolorze na jasnym tle */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #dee2e6;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+}
+
+th {
+    background-color: #f1f3f5;
+}
+
+button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Ikony rang */
+.rank-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #dee2e6;
+}
+
+.rank-icon:hover {
+    border-color: #007bff;
+}

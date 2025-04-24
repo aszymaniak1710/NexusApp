@@ -1,0 +1,106 @@
+/* ======= OGÓLNE STYLE ======= */
+body {
+    font-family: Arial, sans-serif;
+    background: url("character.jpg") no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* ======= KONTENER ======= */
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ======= NAGŁÓWKI ======= */
+h1 {
+    margin-bottom: 10px;
+    color: #f39c12;
+}
+
+h2 {
+    margin-top: 20px;
+    border-bottom: 2px solid #f39c12;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* ======= DANE POSTACI ======= */
+.details p {
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px 0;
+}
+
+/* ======= LISTY ======= */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* ======= UMIEJĘTNOŚCI ======= */
+.skills li {
+    font-size: 18px;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.skill-name {
+    font-weight: bold;
+    color: #f39c12;
+}
+
+.skill-desc {
+    font-style: italic;
+}
+
+/* ======= STATYSTYKI ======= */
+.stats li {
+    font-size: 18px;
+    margin: 8px 0;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* ======= PRZYCISKI ======= */
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    background: #3498db;
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+/* ======= PRZYCISK USUNIĘCIA ======= */
+button.delete {
+    background: #e74c3c;
+}
+
+button.delete:hover {
+    background: #c0392b;
+}

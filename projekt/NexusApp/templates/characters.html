@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Postaci</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'char.css' %}">
+</head>
+ <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'display_characters' %}">Postacie</a></li>
+                <li><a href="{% url 'display_maps' %}">Mapy</a></li>
+                <li><a href="{% url 'display_ranks' %}">Rangi</a></li>
+                <li><a href="{% url 'display_roles' %}">Role</a></li>
+            </ul>
+        </nav>
+    </header>
+<body>
+    <div class="container">
+        <h1>Lista Postaci</h1>
+        <button class="add-btn" onclick="location.href='{% url 'add_character' %}'">➕ Dodaj nową postać</button>
+
+        <div class="character-list">
+            {% for character in characters %}
+            <div class="character-card">
+                <h2>{{ character.nazwa }}</h2>
+                <p><strong>Rasa:</strong> {{ character.rasa }}</p>
+                <p><strong>Rola:</strong> {{ character.id_r.naz_roli }}</p>
+                <div class="buttons">
+                    <button onclick="location.href='{% url 'character_details' character.id_p %}'">🔍 Szczegóły</button>
+                    <button class="edit" onclick="location.href='{% url 'modify_character' character.id_p %}'">✏️ Edytuj</button>
+                    <button class="delete" onclick="return confirm('Czy na pewno usunąć?') ? location.href='{% url 'delete_character' character.id_p %}' : ''">🗑 Usuń</button>
+                </div>
+            </div>
+            {% empty %}
+            <p class="empty">Brak postaci w bazie danych.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

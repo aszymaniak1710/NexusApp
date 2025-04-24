@@ -1,0 +1,109 @@
+/* Resetowanie stylów */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ustawienia tła */
+body {
+    font-family: Arial, sans-serif;
+    background: url("../static/images/characters.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Nagłówek */
+header {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    color: #f39c12;
+}
+
+/* Główna zawartość */
+main {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
+
+/* Formularz */
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 5px;
+}
+
+/* Styl dla list rozwijanych */
+select option {
+    background: #222;
+    color: white;
+}
+
+/* Układ dla umiejętności i statystyk */
+.skills-grid, .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+/* Przycisk */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #f39c12;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #e67e22;
+}
+
+/* Stopka */
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #f39c12;
+    text-decoration: none;
+    font-weight: bold;
+}

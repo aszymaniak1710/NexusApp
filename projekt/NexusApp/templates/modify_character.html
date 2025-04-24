@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modyfikacja Postaci</title>
+    <link rel="stylesheet" href="{% static 'character.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'display_characters' %}">Postacie</a></li>
+                <li><a href="{% url 'display_maps' %}">Mapy</a></li>
+                <li><a href="{% url 'display_ranks' %}">Rangi</a></li>
+                <li><a href="{% url 'display_roles' %}">Role</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Modyfikacja Postaci</h1>
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="nazwa">Nazwa:</label>
+            <input type="text" name="nazwa" id="nazwa" value="{{ character.nazwa }}" required>
+
+            <label for="rasa">Rasa:</label>
+            <input type="text" name="rasa" id="rasa" value="{{ character.rasa }}" required>
+
+            <label for="wiek">Wiek:</label>
+            <input type="number" name="wiek" id="wiek" value="{{ character.wiek }}" required>
+
+            <label for="id_poch">Pochodzenie:</label>
+            <select name="id_poch" id="id_poch" required>
+                {% for pochodzenie in pochodenia %}
+                <option value="{{ pochodzenie.id_poch }}" {% if character.id_poch.id_poch == pochodzenie.id_poch %}selected{% endif %}>
+                    {{ pochodzenie.miejsce_urodzenia }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label for="id_r">Rola:</label>
+            <select name="id_r" id="id_r" required>
+                {% for rola in role %}
+                <option value="{{ rola.id_r }}" {% if character.id_r.id_r == rola.id_r %}selected{% endif %}>
+                    {{ rola.naz_roli }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label for="koszt_be">Koszt BE:</label>
+            <select name="koszt_be" id="koszt_be" required>
+                {% for trudnosc in trudnosci %}
+                <option value="{{ trudnosc.koszt_be }}" {% if character.koszt_be.koszt_be == trudnosc.koszt_be %}selected{% endif %}>
+                    {{ trudnosc.koszt_be }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <h2>Umiejętności</h2>
+            <div class="skills-grid">
+                {% for umiejetnosc_postaci in umiejetnosci %}
+                <div class="skill">
+                    <label>{{ umiejetnosc_postaci.przycisk }} - Nazwa:</label>
+                    <input type="text" name="umiejetnosc_{{ umiejetnosc_postaci.przycisk|lower }}_nazwa"
+                        value="{{ umiejetnosc_postaci.nazwa }}" required>
+
+                    <label>{{ umiejetnosc_postaci.przycisk }} - Opis:</label>
+                    <input type="text" name="umiejetnosc_{{ umiejetnosc_postaci.przycisk|lower }}_opis"
+                        value="{{ umiejetnosc_postaci.opis }}" required>
+                </div>
+                {% endfor %}
+            </div>
+
+            <h2>Statystyki</h2>
+            <div class="stats-grid">
+                {% for statystyka_postaci in statystyki %}
+                <div class="stat">
+                    <label>{{ statystyka_postaci.id_stat.nazwa }}:</label>
+                    <input type="number" name="stat_{{ statystyka_postaci.id_stat.nazwa|lower }}"
+                        value="{{ statystyka_postaci.wartosc }}" required>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="button-container">
+                <button type="submit" class="save-btn">Zapisz zmiany</button>
+                <button type="button" class="cancel-btn" onclick="location.href='{% url 'character_details' character.id_p %}'">Powrót</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <a href="{% url 'display_characters' %}">Powrót do listy postaci</a>
+    </footer>
+</body>
+</html>

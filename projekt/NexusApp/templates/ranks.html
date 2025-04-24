@@ -1,0 +1,69 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Rang</title>
+    <link rel="stylesheet" href="{% static 'ranks.css' %}">
+</head>
+<body>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-image: url("{% static 'rankBackground.png' %}");
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+    }
+</style>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'display_characters' %}">Postacie</a></li>
+                <li><a href="{% url 'display_maps' %}">Mapy</a></li>
+                <li><a href="{% url 'display_ranks' %}">Rangi</a></li>
+                <li><a href="{% url 'display_roles' %}">Role</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Lista Rang</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ikona</th>
+                        <th>Nazwa Rangi</th>
+                        <th>Liczba Graczy</th>
+                        <th>Procent Graczy</th>
+                        <th>Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for rank in ranks %}
+                    <tr>
+                        <td>
+                            <img src="{% static 'ranks/' %}{{ rank.nazwa_rangi|lower }}.png" alt="{{ rank.nazwa_rangi }}" class="rank-icon">
+                        </td>
+                        <td>{{ rank.nazwa_rangi }}</td>
+                        <td>
+                            <input type="number" name="ilosc_graczy_{{ rank.nazwa_rangi }}" value="{{ rank.ilosc_graczy }}" required>
+                        </td>
+                        <td>{{ rank.procent_graczy|floatformat:2 }}%</td>
+                        <td>
+                            <button type="submit" name="update_rank" value="{{ rank.nazwa_rangi }}">Zapisz</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </main>
+</body>
+</html>

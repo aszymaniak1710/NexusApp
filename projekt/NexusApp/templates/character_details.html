@@ -1,0 +1,58 @@
+{% load static %}
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szczegóły Postaci</title>
+
+    <link rel="stylesheet" href="{% static 'character_details.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ character.nazwa }}</h1>
+        <div class="details">
+            <p><strong>Rasa:</strong> {{ character.rasa }}</p>
+            <p><strong>Wiek:</strong> {{ character.wiek }}</p>
+            <p><strong>Pochodzenie:</strong> {{ character.id_poch.miejsce_urodzenia }}</p>
+            <p><strong>Rola:</strong> {{ character.id_r.naz_roli }}</p>
+            <p><strong>Koszt BE:</strong> {{ character.koszt_be.koszt_be }}</p>
+            <p><strong>Data wydania:</strong> {{ character.data_wydania }}</p>
+            <p><strong>Zasoby:</strong> {{ character.id_zas.nazwa }}</p>
+            <p><strong>Obrażenia:</strong> {{ character.id_obr.nazwa }}</p>
+            <p><strong>Runy:</strong> {{ character.id_run.nazwa }}</p>
+            <p><strong>Linia:</strong> {{ character.id_lini.nazwa }}</p>
+        </div>
+
+        <h2>Umiejętności</h2>
+        <ul class="skills">
+            {% for umiejetnosc in umiejetnosci %}
+            <li>
+                <strong>{{ umiejetnosc.przycisk }}:</strong>
+                <span class="skill-name">{{ umiejetnosc.nazwa }}</span> -
+                <span class="skill-desc">{{ umiejetnosc.opis }}</span>
+            </li>
+            {% empty %}
+            <li>Brak umiejętności przypisanych do tej postaci.</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Statystyki</h2>
+        <ul class="stats">
+            {% for statystyka in statystyki %}
+            <li>
+                <strong>{{ statystyka.id_stat.nazwa }}:</strong>
+                {{ statystyka.wartosc }}
+            </li>
+            {% empty %}
+            <li>Brak statystyk przypisanych do tej postaci.</li>
+            {% endfor %}
+        </ul>
+
+        <div class="buttons">
+            <button onclick="location.href='/characters'">🏠 Powrót</button>
+            <button onclick="location.href='{% url 'modify_character' character.id_p %}'">✏️ Edytuj</button>
+            <button class="delete" onclick="location.href='{% url 'delete_character' character.id_p %}'">🗑 Usuń</button>
+        </div>
+    </div>
+</body>
+</html>
